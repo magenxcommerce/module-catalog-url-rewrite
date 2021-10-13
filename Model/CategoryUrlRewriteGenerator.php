@@ -15,9 +15,6 @@ use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Framework\App\ObjectManager;
 use Magento\UrlRewrite\Model\MergeDataProviderFactory;
 
-/**
- * Generate list of urls.
- */
 class CategoryUrlRewriteGenerator
 {
     /** Entity type code */
@@ -87,8 +84,6 @@ class CategoryUrlRewriteGenerator
     }
 
     /**
-     * Generate list of urls.
-     *
      * @param \Magento\Catalog\Model\Category $category
      * @param bool $overrideStoreUrls
      * @param int|null $rootCategoryId
@@ -124,7 +119,6 @@ class CategoryUrlRewriteGenerator
         $mergeDataProvider = clone $this->mergeDataProviderPrototype;
         $categoryId = $category->getId();
         foreach ($category->getStoreIds() as $storeId) {
-            $category->setStoreId($storeId);
             if (!$this->isGlobalScope($storeId)
                 && $this->isOverrideUrlsForStore($storeId, $categoryId, $overrideStoreUrls)
             ) {
@@ -137,8 +131,6 @@ class CategoryUrlRewriteGenerator
     }
 
     /**
-     * Checks if urls should be overridden for store.
-     *
      * @param int $storeId
      * @param int $categoryId
      * @param bool $overrideStoreUrls
